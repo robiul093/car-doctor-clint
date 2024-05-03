@@ -1,16 +1,20 @@
-import { NavLink } from "react-router-dom";
+import { Link, NavLink } from "react-router-dom";
 import logo from "../../assets/logo.svg"
+import { useContext } from "react";
+import { AuthContext } from "../../Provider/AuthProvider";
 
 const NavBar = () => {
 
     const link = <>
-                    <NavLink><li>Home</li></NavLink>
-                    <NavLink><li>About</li></NavLink>
-                    <NavLink><li>Services</li></NavLink>
-                    <NavLink><li>Blog</li></NavLink>
-                    <NavLink><li>Contact</li></NavLink>
-                </>
-    
+        <NavLink><li>Home</li></NavLink>
+        <NavLink><li>About</li></NavLink>
+        <NavLink><li>Services</li></NavLink>
+        <NavLink><li>Blog</li></NavLink>
+        <NavLink><li>Contact</li></NavLink>
+    </>
+
+    const { user, logOut } = useContext(AuthContext);
+
     return (
         <div className="navbar bg-base-100 h-20 mb-10 flex items-center">
             <div className="navbar-start">
@@ -25,12 +29,19 @@ const NavBar = () => {
                 <a className="btn btn-ghost text-xl"><img src={logo} alt="" /></a>
             </div>
             <div className="navbar-center hidden lg:flex">
-                <ul className="menu menu-horizontal px-1 text-lg font-semibold">
+                <ul className="menu menu-horizontal px-1 text-lg font-semibold space-x-5">
                     {link}
                 </ul>
             </div>
-            <div className="navbar-end">
-                <a className="btn text-[#FF3811] outline-2  bg-transparent">Button</a>
+            <div className="navbar-end space-x-4">
+                {
+                    user
+                        ? <Link onClick={logOut} to={"/login"} className="btn text-[#FF3811]  border-[#FF3811]  bg-transparent">Log Out</Link>
+                        : <>
+                            <Link to={"/login"} className="btn text-[#FF3811] border-[#FF3811]  bg-transparent">Login</Link>
+                            <Link to={"/registation"} className="btn text-[#FF3811] border-[#FF3811]  bg-transparent">Registation</Link>
+                        </>
+                }
             </div>
         </div>
     );
