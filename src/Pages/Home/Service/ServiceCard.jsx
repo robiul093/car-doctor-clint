@@ -1,8 +1,9 @@
 import { FaLongArrowAltRight } from "react-icons/fa";
+import { Link } from "react-router-dom";
 
 const ServiceCard = ({ service }) => {
 
-    const { service_id, title, img, price, description, facility } = service
+    const { _id, service_id, title, img, price, description, facility } = service
 
     return (
         <div className="card card-compact w-96 bg-base-100 shadow-xl space-y-5">
@@ -14,9 +15,11 @@ const ServiceCard = ({ service }) => {
                         <p>Price:</p>
                         <p>${price}</p>
                     </div>
-                    <FaLongArrowAltRight />
+                    <Link to={`/checkout/${_id}`}>
+                        <FaLongArrowAltRight />
+                    </Link>
                 </div>
-            
+
             </div>
         </div>
     );
