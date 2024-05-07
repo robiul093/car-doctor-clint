@@ -1,11 +1,11 @@
 import { useContext, } from "react";
 import { AuthContext } from "../../Provider/AuthProvider";
 import { useLoaderData } from "react-router-dom";
-import { logEvent } from "firebase/analytics";
 
 const Checkout = () => {
 
     const {user} = useContext(AuthContext)
+    console.log(user)
     const service = useLoaderData()
     const { _id, img, title, price } = service;
 
@@ -76,7 +76,7 @@ const Checkout = () => {
                     </div>
                 </div>
                 <div className="form-control mt-6">
-                    <button className="btn btn-primary">Login</button>
+                    <button className="btn btn-primary">Booking</button>
                 </div>
             </form>
         </div>
