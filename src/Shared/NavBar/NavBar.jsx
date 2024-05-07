@@ -5,15 +5,18 @@ import { AuthContext } from "../../Provider/AuthProvider";
 
 const NavBar = () => {
 
+    const { user, logOut } = useContext(AuthContext);
+
     const link = <>
         <NavLink><li>Home</li></NavLink>
         <NavLink><li>About</li></NavLink>
         <NavLink><li>Services</li></NavLink>
         <NavLink><li>Blog</li></NavLink>
-        <NavLink><li>Contact</li></NavLink>
+        {
+            user?.email && <NavLink to={'/bookings'}><li>My Bookings</li></NavLink>
+        }
     </>
 
-    const { user, logOut } = useContext(AuthContext);
 
     return (
         <div className="navbar bg-base-100 h-20 mb-10 flex items-center">
